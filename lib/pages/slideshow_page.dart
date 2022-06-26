@@ -115,12 +115,17 @@ class _Dot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = Provider.of<SliderModel>(context);
-    return Container(
-      width: 12,
-      height: 12,
+    return AnimatedContainer(
+      width: (p.getCurrentPage! >= index - 0.5 && p.getCurrentPage! < index + 0.5)
+      ? 20
+      : 12,
+      height: (p.getCurrentPage! >= index - 0.5 && p.getCurrentPage! < index + 0.5)
+      ? 20
+      :12,
+      duration: const Duration(milliseconds: 200),
       margin: const EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
-        color: p.getCurrentPage == index
+        color: (p.getCurrentPage! >= index - 0.5 && p.getCurrentPage! < index + 0.5)
         ? const Color.fromRGBO(0, 191, 166, 1)
         : Colors.grey,
         shape: BoxShape.circle
